@@ -110,6 +110,27 @@ void setupBuffers(){
     glBindVertexArray(0);
 }
 
+
+// Function to set up a perspective projection matrix manually
+void setProjectionMatrix(int width, int height) {
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+
+    // Set up a perspective projection using glFrustum
+    float aspectRatio = (float)width / (float)height;
+    float near = 0.1f;
+    float far = 100.0f;
+    float fov = 45.0f;
+
+    float top = near * tan(fov * 0.5f * 3.14159f / 180.0f);
+    float bottom = -top;
+    float left = bottom * aspectRatio;
+    float right = top * aspectRatio;
+
+    glFrustum(left, right, bottom, top, near, far);
+    glMatrixMode(GL_MODELVIEW);
+}
+
 int renderLinesDeprecated(){
     // Now draw your lines
     glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);  // Use the best line smoothing quality
@@ -144,6 +165,30 @@ int renderTriangleDeprecated(){
     return 0;
 }
 
+void mainLoop(GLuint* shaderProgram){
+    int width, height;
+    while (!glfwWindowShouldClose(window)) {
+        // Get window size
+        glfwGetFramebufferSize(window, &width, &height);
+        glViewport(0, 0, width, height);
+
+        // Set up the projection matrix
+        setProjectionMatrix(width, height);
+
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear the screen
+        glLoadIdentity(); // Reset transformations
+
+        //Setup Shaders
+        glUseProgram(*shaderProgram);
+
+        //Render Item Here
+        renderTriangle();
+
+        glfwSwapBuffers(window);
+        glfwPollEvents();
+    }
+}
+
 int main() {
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -158,19 +203,8 @@ int main() {
     glEnable(GL_DEPTH_TEST); // Enable depth testing
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // Set background color to black
 
-    while (!glfwWindowShouldClose(window)) {
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear the screen
+    mainLoop(&shaderProgram);
 
-        //Setup Shaders
-        glUseProgram(shaderProgram);
-
-        //Render Item Here
-        renderTriangle();
-
-        glfwSwapBuffers(window);
-        glfwPollEvents();
-    }
-    
     // Clean up and exit
     cleanup();
 
