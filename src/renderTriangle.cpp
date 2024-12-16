@@ -4,6 +4,7 @@
 
 GLFWwindow* window = nullptr;
 GLuint VAO, VBO;
+GLfloat test = 0.0f;
 
 GLfloat verticesWithColor[] = {
     0.0f,  0.5f, 1.0f, 0.0f, 0.0f,// Top vertex
@@ -189,13 +190,22 @@ void mainLoop(GLuint* shaderProgram){
     }
 }
 
+void mouse_button_callback(GLFWwindow* window, int button, int action, int mods){
+    if(button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS){
+        std::cout << "button Click";
+    }
+}
+
 int main() {
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);    
     window = glfwCreateWindow(800, 600, "Spinning Cube", nullptr, nullptr);
     glfwMakeContextCurrent(window);
     glewInit();
+
+    glfwSetMouseButtonCallback(window, mouse_button_callback);
+
     //Setup Buffers:
     setupBuffers();
     GLuint shaderProgram = createShaderProgram();
@@ -207,7 +217,6 @@ int main() {
 
     // Clean up and exit
     cleanup();
-
 
     return 0;
 }

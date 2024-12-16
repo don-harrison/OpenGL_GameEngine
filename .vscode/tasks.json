@@ -20,15 +20,30 @@
                 // Include directories
                 "/I", "glew-2.1.0\\include",
                 "/I", "glfw-3.4.bin.WIN32\\include",
-                "/I", "include\\ucrt",
-                "/I", "include\\um",
-                "/I", "include\\MSVC\\14.42.34433\\Include",
+                // "/I", "include\\ucrt",
+                // "/I", "include\\um",
+                // "/I", "include\\MSVC\\14.42.34433\\Include",
                 // "/I", "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.42.34433\\lib\\onecore\\x86",
-                "/I", "include\\shared",
+                // "/I", "include\\shared",
                 // Linker paths
                 "/link",
                 "/LIBPATH:glew-2.1.0\\lib\\Release\\Win32",
                 "/LIBPATH:glfw-3.4.bin.WIN32\\lib-vc2022",
+                "AdvAPI32.Lib",
+                "ComDlg32.Lib",
+                "lib\\x86\\Gdi32.Lib",
+                "lib\\x86\\glew32.lib",
+                "lib\\x86\\glfw3.lib",
+                "lib\\x86\\Imm32.Lib",
+                "lib\\x86\\kernel32.Lib",
+                "lib\\x86\\Ole32.Lib",
+                "lib\\x86\\OpenGL32.Lib",
+                "lib\\x86\\SetupAPI.Lib",
+                "lib\\x86\\shell32.lib",
+                "lib\\x86\\User32.Lib",
+                "lib\\x86\\Version.Lib",
+                "lib\\x86\\WinMM.Lib",
+                "lib\\x86\\WS2_32.Lib",
                 // "/LIBPATH:C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.22621.0\\lib\\onecore\\x86",
                 // "/LIBPATH:C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.42.34433\\lib",
                 // "/LIBPATH:C:\\Program Files (x86)\\Windows Kits\\10\\Lib\\10.0.22621.0\\um\\x86",
@@ -49,3 +64,19 @@
         }
     ]
 }
+
+-a----         2/21/2024   7:39 PM         191548 AdvAPI32.Lib
+-a----         2/21/2024  11:46 PM           5842 ComDlg32.Lib
+-a----        12/15/2024   5:36 PM         147368 Gdi32.Lib
+-a----        12/15/2024   5:36 PM         712098 glew32.lib
+-a----        12/15/2024   5:36 PM         562624 glfw3.lib
+-a----         2/21/2024   7:36 PM          20444 Imm32.Lib
+-a----         2/21/2024   7:32 PM         326426 kernel32.Lib
+-a----         2/21/2024  11:46 PM         108518 Ole32.Lib
+-a----        12/15/2024   5:36 PM          76920 OpenGL32.Lib
+-a----         2/21/2024   7:40 PM         151700 SetupAPI.Lib
+-a----         2/22/2024  12:46 AM         278460 shell32.lib
+-a----         2/21/2024   7:32 PM         177892 User32.Lib
+-a----         2/21/2024  11:45 PM           4324 Version.Lib
+-a----         2/21/2024  11:45 PM          42736 WinMM.Lib
+-a----         2/21/2024   7:28 PM         239822 WS2_32.Lib
